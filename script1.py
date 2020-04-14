@@ -671,8 +671,8 @@ OTHERS  =  {
                 'windowlength': 128,
                 'out_size': 3,
                 'period': 52,
-                'lrate': 0.0009,
-                'batchsize': 32,
+                'lrate': 0.0002,
+                'batchsize': 16,
                 'epoch': 1000
                 }
 
