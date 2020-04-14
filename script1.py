@@ -685,7 +685,7 @@ def SINGLE_RUN(trial):
     minloss = P_OBJ.GET_MODEL(change)
 
     
-for i in range(20)
+for i in range(20):
     global P_OBJ
     global OTHERS
     global DICT
