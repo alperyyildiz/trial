@@ -653,88 +653,108 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 
 def SINGLE_RUN(trial):
 
+    ker1_start = int(input('kernel 1 start'))
+    ker1_end = int(input('kernel 1 end'))
+    
+    ker2_start = inp(input('kernel 2 start'))
+    ker2_end = inp(input('kernel 2 end'))
+    ler_start = inp(input('lrate 2 start'))
+    ler_end = inp(input('lrate 2 end'))
 
-    ker = trial.suggest_int('kernel1', 2, 8 )
-    ker2 = trial.suggest_int('kernel2', 16,24)
-    learning_rate = trial.suggest_uniform('lrr',0.00008, 0.001)
-    print('\n\n KERNEL1 IS {} \n KERNEL2 IS {} \n\n'.format(ker,ker2))
+    dil1_start = inp(input('dil 1 start'))
+    dil1_end = inp(input('dil 1 end'))
+    dil2_start = inp(input('dil 2 start'))
+    dil2_end = inp(input('dil 2 end'))
+
+    
+    ker = trial.suggest_int('kernel1',ker1_start, ker1_end)
+    ker2 = trial.suggest_int('kernel2', ker2_start, ker2_end)
+    learning_rate = trial.suggest_uniform('lrr',lr_start, lr_end)
+    dilation1 = trial.suggest_int('dil1',dil1_start, dil1_end)
+    dilation2 = trial.suggest_int('dil1',dil2_start, dil2_end)
+
+    print('\n\n KERNEL1 IS {} \n KERNEL2 IS {} \n LRATE IS {} \n\n'.format(ker,ker2,learning_rate))
     
     
     change = { 
-              'CONV': {'1': {'KER': ker},
-                       '2': {'KER': ker2}},
+              'CONV': {'1': {'KER': ker,
+                             'dilation': dilation1},
+                       '2': {'KER': ker2,
+                             'dilation': dilation2}},
               'OTHERS': {'1': { 'lrate': learning_rate}}}
     minloss = P_OBJ.GET_MODEL(change)
 
-global P_OBJ
-global OTHERS
-global DICT
-OTHERS  =  {
-                'windowlength': 128,
-                'out_size': 4,
-                'period': 52,
-                'lrate': 0.00012,
-                'batchsize': 32,
-                'epoch': 200
-                }
+    
+for i in range(20)
+    global P_OBJ
+    global OTHERS
+    global DICT
+    OTHERS  =  {
+                    'windowlength': 128,
+                    'out_size': 4,
+                    'period': 52,
+                    'lrate': 0.00012,
+                    'batchsize': 32,
+                    'epoch': 200
+                    }
 
 
-DICT =  { 'CONV': {
-                    '1': {'FIL': 128, 
-                          'KER': 2,
+    DICT =  { 'CONV': {
+                        '1': {'FIL': 128, 
+                              'KER': 16,
+                              'stride': 1,
+                              'padding': 0,
+                              'dilation': 2,
+                              'dropout': [True, 0.6],
+                              'batchnorm': False,
+                              'activation_function': [True, 'relu'],
+                              'pooling': [False, 0, None]
+                            },
+                        '2': {'FIL': 256, 
+                          'KER': 16,
                           'stride': 1,
                           'padding': 0,
-                          'dilation': 2,
+                          'dilation':4,
                           'dropout': [True, 0.6],
                           'batchnorm': False,
                           'activation_function': [True, 'relu'],
                           'pooling': [False, 0, None]
-                        },
-                    '2': {'FIL': 256, 
-                      'KER': 16,
-                      'stride': 1,
-                      'padding': 0,
-                      'dilation':4,
-                      'dropout': [True, 0.6],
-                      'batchnorm': False,
-                      'activation_function': [True, 'relu'],
-                      'pooling': [False, 0, None]
-                    }
-
-
-                  },          
-
-
-        'flatten': {'1': {'nofilter':0 , 'nonothing':0 }},
-
-        'DENSE': {
-                  '1': {'FIL': 256,
-                        'dropout' : [True,0.6],
-                        'activation_function': [True, 'relu']
-                      },
-
-
-                  '3': {'FIL':OTHERS['out_size'],
-                        'dropout' : [False,0],
-                        'activation_function': [False, '-']
                         }
-                },
-
-        'OTHERS': {'1':OTHERS}
-            }
-
-P_OBJ = PARAMETERS()
-P_OBJ.EXPERIMENT_NUMBER = int(1)
-P_OBJ.GET_DICT(DICT)
-P_OBJ.GET_PARAMS_TO_CHANGE({'OTHERS':{'1':{'lrate':(1e-5,3e-3)}}})
-P_OBJ.CREATE_SEARCH_SPACE()
-P_OBJ.CREATE_DIR()
-
-P_OBJ.WRITE_CONSTANTS()
-
-P_OBJ.preprocess()
 
 
-study = optuna.create_study()
+                      },          
 
-study.optimize(SINGLE_RUN, n_trials=100)
+
+            'flatten': {'1': {'nofilter':0 , 'nonothing':0 }},
+
+            'DENSE': {
+                      '1': {'FIL': 256,
+                            'dropout' : [True,0.6],
+                            'activation_function': [True, 'relu']
+                          },
+
+
+                      '3': {'FIL':OTHERS['out_size'],
+                            'dropout' : [False,0],
+                            'activation_function': [False, '-']
+                            }
+                    },
+
+            'OTHERS': {'1':OTHERS}
+                }
+
+    P_OBJ = PARAMETERS()
+    P_OBJ.EXPERIMENT_NUMBER = int(1)
+    P_OBJ.GET_DICT(DICT)
+    P_OBJ.GET_PARAMS_TO_CHANGE()
+    P_OBJ.CREATE_SEARCH_SPACE()
+    P_OBJ.CREATE_DIR()
+
+    P_OBJ.WRITE_CONSTANTS()
+
+    P_OBJ.preprocess()
+
+
+    study = optuna.create_study()
+
+    study.optimize(SINGLE_RUN, n_trials=100)
