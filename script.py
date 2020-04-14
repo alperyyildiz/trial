@@ -147,30 +147,6 @@ class PARAMETERS():
                         
                       'OTHERS': {'1':OTHERS}
             }
-            
-    def CREATE_SEARCH_SPACE(self,TO_CHNG= None):
-        #USES: GET_PARAMS_TO_CHANGE()
-
-        #CREATES: self.space
-
-        space = {}
-        self.PARAMS_TO_CHANGE = self.GET_PARAMS_TO_CHANGE()
-        HYP_DICT ={}
-        d_count = 0
-        for TYPE in  list(self.PARAMS_TO_CHANGE.keys()):
-            HYP_DICT_LAYER = {}
-            for layernum in list(self.PARAMS_TO_CHANGE[TYPE].keys()):
-                HYP_DICT_PARAMS = {}
-                for PARAM in list(self.PARAMS_TO_CHANGE[TYPE][layernum].keys()):
-                    if PARAM == 'dropout':
-                        d_count = d_count + 1
-                        HYP_DICT_PARAMS[PARAM] = hp.uniform(PARAM + str(d_count),self.PARAMS_TO_CHANGE[TYPE][layernum][PARAM][0],self.PARAMS_TO_CHANGE[TYPE][layernum][PARAM][1])
-                    else:
-                        HYP_DICT_PARAMS[PARAM] = hp.uniform(PARAM + layernum,self.PARAMS_TO_CHANGE[TYPE][layernum][PARAM][0],self.PARAMS_TO_CHANGE[TYPE][layernum][PARAM][1])
-                    HYP_DICT_LAYER[layernum] =  HYP_DICT_PARAMS
-                HYP_DICT[TYPE] =  HYP_DICT_LAYER
-
-        self.space = hp.choice('paramz', [HYP_DICT])
 
     def GET_PARAMS_TO_CHANGE(self,PARAMS_TO_CHANGE=None):
         if PARAMS_TO_CHANGE is None:
@@ -711,7 +687,9 @@ def SINGLE_RUN(trial):
     learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 1e-2)
     ker = trial.suggest_int('kernel', 12, 28)
     dilation = trial.suggest_int('dilat',1,4)
-
+    print('KERNEL IS {} \t and and DILATION IS {} \n\n LEARNING RATE IS {} \n\n'.format(ker,dilation,learning_rate))
+    
+    
     change = { 
               'CONV': {'1': {'KER': ker,
                              'dilation': dilation}},
