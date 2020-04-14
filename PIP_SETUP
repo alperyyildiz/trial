@@ -1,0 +1,12 @@
+pip install numpy
+pip install pandas
+pip install torch
+pip install visdom
+pip install matplotlib
+pip install xlrd
+pip install scikit-learn
+pip install datetime
+pip install statsmodels
+pip install optuna
+pip install pickle-mixin
+pip install statsmodels
