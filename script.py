@@ -9,6 +9,7 @@ import time
 import shutil
 import os
 import optuna
+import hyperopt
 from datetime import datetime
 from torch import optim
 from sklearn import datasets
@@ -18,6 +19,8 @@ from torch.utils.data import TensorDataset
 from sklearn.preprocessing import StandardScaler
 from statsmodels.tsa.seasonal import seasonal_decompose, STL, DecomposeResult
 from sklearn.model_selection import GridSearchCV
+from hyperopt import fmin, tpe, hp, STATUS_OK, base,Trials
+
 cuda = torch.device('cuda')
 
 
@@ -236,7 +239,30 @@ class PARAMETERS():
                     plot_header = plot_header + PARAM + '=' + str(DDD[KEY][LAYER][PARAM])[:7] + '   '
             plot_header = plot_header + '\n'
         return save_DIR, plot_header
-    
+
+    def CREATE_SEARCH_SPACE(self,TO_CHNG= None):
+        #USES: GET_PARAMS_TO_CHANGE()
+
+        #CREATES: self.space
+
+        space = {}
+        self.PARAMS_TO_CHANGE = self.GET_PARAMS_TO_CHANGE()
+        HYP_DICT ={}
+        d_count = 0
+        for TYPE in  list(self.PARAMS_TO_CHANGE.keys()):
+            HYP_DICT_LAYER = {}
+            for layernum in list(self.PARAMS_TO_CHANGE[TYPE].keys()):
+                HYP_DICT_PARAMS = {}
+                for PARAM in list(self.PARAMS_TO_CHANGE[TYPE][layernum].keys()):
+                    if PARAM == 'dropout':
+                        d_count = d_count + 1
+                        HYP_DICT_PARAMS[PARAM] = hp.uniform(PARAM + str(d_count),self.PARAMS_TO_CHANGE[TYPE][layernum][PARAM][0],self.PARAMS_TO_CHANGE[TYPE][layernum][PARAM][1])
+                    else:
+                        HYP_DICT_PARAMS[PARAM] = hp.uniform(PARAM + layernum,self.PARAMS_TO_CHANGE[TYPE][layernum][PARAM][0],self.PARAMS_TO_CHANGE[TYPE][layernum][PARAM][1])
+                    HYP_DICT_LAYER[layernum] =  HYP_DICT_PARAMS
+                HYP_DICT[TYPE] =  HYP_DICT_LAYER
+
+        self.space = hp.choice('paramz', [HYP_DICT])
     #SAVE CONSTANT HYPERPARAMETERS OF EXPERIMENT AS TXT
     def WRITE_CONSTANTS(self):
         key_CONST = ''
