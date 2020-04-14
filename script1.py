@@ -658,8 +658,8 @@ def SINGLE_RUN(trial):
     
     ker2_start = int(input('kernel 2 start'))
     ker2_end = int(input('kernel 2 end'))
-    ler_start = float(input('lrate 2 start'))
-    ler_end = float(input('lrate 2 end'))
+    lr_start = float(input('lrate 2 start'))
+    lr_end = float(input('lrate 2 end'))
 
     dil1_start = int(input('dil 1 start'))
     dil1_end = int(input('dil 1 end'))
