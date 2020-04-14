@@ -29,6 +29,7 @@ class PARAMETERS():
     def __init__(self):
         super().__init__()
         self.scaler = StandardScaler()
+        self.best = 1
 
     def DICT_TO_LIST(self):
         prev_out_ch = 0
@@ -364,9 +365,9 @@ class PARAMETERS():
             dollars[len(dollar_inv) - i-1] = dollar_inv[i]
 
 
-        SCALERR = StandardScaler()
-        SCALERR = SCALERR.fit(sales[:-split].reshape(-1,1))
-        sales = SCALERR.transform(sales.reshape(-1,1))
+        SCALER = StandardScaler()
+        SCALER = SCALER.fit(sales[:-split].reshape(-1,1))
+        sales = SCALER.transform(sales.reshape(-1,1))
         del SCALERR
 
         sclr = StandardScaler()
@@ -472,7 +473,7 @@ class PARAMETERS():
 
 
     def plotz(self):
-
+        
         timez = np.zeros((350,self.DICT['OTHERS']['1']['out_size']))
         for i in range(350):
             for j in range(self.DICT['OTHERS']['1']['out_size']):
@@ -654,9 +655,9 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 def SINGLE_RUN(trial):
 
 
-    learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 1e-2)
-    ker = trial.suggest_int('kernel', 12, 28)
-    dilation = trial.suggest_int('dilat',1,4)
+    learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 2e-3)
+    ker = trial.suggest_int('kernel', 18, 28)
+    dilation = trial.suggest_int('dilat',3,4)
     print('KERNEL IS {} \t and and DILATION IS {} \n\n LEARNING RATE IS {} \n\n'.format(ker,dilation,learning_rate))
     
     
@@ -676,7 +677,7 @@ OTHERS  =  {
                 'period': 24,
                 'lrate': 0.003,
                 'batchsize': 32,
-                'epoch': 1000
+                'epoch': 2000
                 }
 
 
