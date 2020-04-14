@@ -682,15 +682,35 @@ OTHERS  =  {
 
 DICT =  { 'CONV': {
                     '1': {'FIL': 128, 
-                          'KER': 16,
+                          'KER': 4,
                           'stride': 1,
                           'padding': 0,
-                          'dilation': 1,
+                          'dilation': 2,
                           'dropout': [True, 0.7],
                           'batchnorm': False,
                           'activation_function': [True, 'relu'],
                           'pooling': [False, 0, None]
-                        }
+                        },
+                    '2': {'FIL': 128, 
+                      'KER': 4,
+                      'stride': 1,
+                      'padding': 0,
+                      'dilation':4,
+                      'dropout': [True, 0.7],
+                      'batchnorm': False,
+                      'activation_function': [True, 'relu'],
+                      'pooling': [False, 0, None]
+                    },
+                    '3': {'FIL': 128, 
+                      'KER': 4,
+                      'stride': 1,
+                      'padding': 0,
+                      'dilation':6,
+                      'dropout': [True, 0.7],
+                      'batchnorm': False,
+                      'activation_function': [True, 'relu'],
+                      'pooling': [False, 0, None]
+                    }
 
 
                   },          
@@ -715,10 +735,9 @@ DICT =  { 'CONV': {
             }
 
 P_OBJ = PARAMETERS()
-P_OBJ.EXPERIMENT_NUMBER = 1
+P_OBJ.EXPERIMENT_NUMBER = int(1)
 P_OBJ.GET_DICT(DICT)
-P_OBJ.GET_PARAMS_TO_CHANGE({'CONV':{'1':{'KER':(18,26),'dilation':(3,4)}},
-                            'OTHERS':{'1':{'lrate':(1e-6,2e-3)}}})
+P_OBJ.GET_PARAMS_TO_CHANGE({'OTHERS':{'1':{'lrate':(1e-6,3e-3)}}})
 P_OBJ.CREATE_SEARCH_SPACE()
 P_OBJ.CREATE_DIR()
 
