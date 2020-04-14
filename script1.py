@@ -655,14 +655,15 @@ def SINGLE_RUN(trial):
 
 
     learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 2e-3)
-    ker = trial.suggest_int('kernel', 18, 24)
-    dilation = trial.suggest_int('dilat',3,4)
-    print('KERNEL IS {} \t and and DILATION IS {} \n\n LEARNING RATE IS {} \n\n'.format(ker,dilation,learning_rate))
+    ker = trial.suggest_int('kernel1', 2,8)
+    ker2 = trial.suggest_int('kernel2', 2,8)
+    ker3 = trial.suggest_int('kernel3', 2,8)
+    print('\n\n KERNEL1 IS {} \n KERNEL2 IS {}\n KERNEL3 IS {} \n LEARNING RATE IS {} \n\n'.format(ker,ker2,ker3,learning_rate))
     
     
     change = { 
-              'CONV': {'1': {'KER': ker,
-                             'dilation': dilation}},
+              'CONV': {'1': {'KER': ker},
+                       '2': {'KER': ker2}},
               'OTHERS':{'1':{'lrate':learning_rate,
                           }}}
     minloss = P_OBJ.GET_MODEL(change)
@@ -681,7 +682,7 @@ OTHERS  =  {
 
 
 DICT =  { 'CONV': {
-                    '1': {'FIL': 128, 
+                    '1': {'FIL': 256, 
                           'KER': 4,
                           'stride': 1,
                           'padding': 0,
@@ -701,7 +702,7 @@ DICT =  { 'CONV': {
                       'activation_function': [True, 'relu'],
                       'pooling': [False, 0, None]
                     },
-                    '3': {'FIL': 128, 
+                    '3': {'FIL': 96, 
                       'KER': 4,
                       'stride': 1,
                       'padding': 0,
