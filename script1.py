@@ -654,9 +654,9 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 def SINGLE_RUN(trial):
 
 
-    learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 1e-2)
-    ker = trial.suggest_int('kernel', 12, 28)
-    dilation = trial.suggest_int('dilat',1,4)
+    learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 2e-3)
+    ker = trial.suggest_int('kernel', 18, 26)
+    dilation = trial.suggest_int('dilat',3,4)
     print('KERNEL IS {} \t and and DILATION IS {} \n\n LEARNING RATE IS {} \n\n'.format(ker,dilation,learning_rate))
     
     
