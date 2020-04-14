@@ -654,11 +654,9 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 def SINGLE_RUN(trial):
 
 
-    learning_rate = trial.suggest_loguniform('learning_rate', 1e-5, 3e-3)
     ker = trial.suggest_int('kernel1', 2,8)
     ker2 = trial.suggest_int('kernel2', 2,8)
-    ker3 = trial.suggest_int('kernel3', 2,8)
-    print('\n\n KERNEL1 IS {} \n KERNEL2 IS {}\n KERNEL3 IS {} \n LEARNING RATE IS {} \n\n'.format(ker,ker2,ker3,learning_rate))
+    print('\n\n KERNEL1 IS {} \n KERNEL2 IS {} \n LEARNING RATE IS {} \n\n'.format(ker,ker2))
     
     
     change = { 
@@ -675,7 +673,7 @@ OTHERS  =  {
                 'windowlength': 100,
                 'out_size': 3,
                 'period': 52,
-                'lrate': 0.003,
+                'lrate': 0.0009,
                 'batchsize': 32,
                 'epoch': 1000
                 }
@@ -683,31 +681,21 @@ OTHERS  =  {
 
 DICT =  { 'CONV': {
                     '1': {'FIL': 256, 
-                          'KER': 4,
+                          'KER': 16,
                           'stride': 1,
                           'padding': 0,
                           'dilation': 2,
-                          'dropout': [True, 0.5],
+                          'dropout': [True, 0.6],
                           'batchnorm': False,
                           'activation_function': [True, 'relu'],
                           'pooling': [False, 0, None]
                         },
                     '2': {'FIL': 128, 
-                      'KER': 4,
+                      'KER': 8,
                       'stride': 1,
                       'padding': 0,
                       'dilation':4,
-                      'dropout': [True, 0.5],
-                      'batchnorm': False,
-                      'activation_function': [True, 'relu'],
-                      'pooling': [False, 0, None]
-                    },
-                    '3': {'FIL': 96, 
-                      'KER': 4,
-                      'stride': 1,
-                      'padding': 0,
-                      'dilation':6,
-                      'dropout': [True, 0.5],
+                      'dropout': [True, 0.6],
                       'batchnorm': False,
                       'activation_function': [True, 'relu'],
                       'pooling': [False, 0, None]
@@ -721,7 +709,7 @@ DICT =  { 'CONV': {
 
         'DENSE': {
                   '1': {'FIL': 256,
-                        'dropout' : [True,0.5],
+                        'dropout' : [True,0.65],
                         'activation_function': [True, 'relu']
                       },
 
@@ -738,7 +726,7 @@ DICT =  { 'CONV': {
 P_OBJ = PARAMETERS()
 P_OBJ.EXPERIMENT_NUMBER = int(1)
 P_OBJ.GET_DICT(DICT)
-P_OBJ.GET_PARAMS_TO_CHANGE({'OTHERS':{'1':{'lrate':(1e-6,3e-3)}}})
+P_OBJ.GET_PARAMS_TO_CHANGE({'OTHERS':{'1':{'lrate':(1e-5,3e-3)}}})
 P_OBJ.CREATE_SEARCH_SPACE()
 P_OBJ.CREATE_DIR()
 
