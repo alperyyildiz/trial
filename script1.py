@@ -655,7 +655,7 @@ def SINGLE_RUN(trial):
 
 
     learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 2e-3)
-    ker = trial.suggest_int('kernel', 18, 26)
+    ker = trial.suggest_int('kernel', 18, 24)
     dilation = trial.suggest_int('dilat',3,4)
     print('KERNEL IS {} \t and and DILATION IS {} \n\n LEARNING RATE IS {} \n\n'.format(ker,dilation,learning_rate))
     
