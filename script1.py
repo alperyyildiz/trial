@@ -654,9 +654,9 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 def SINGLE_RUN(trial):
 
 
-    ker = trial.suggest_int('kernel1', 2,8)
-    ker2 = trial.suggest_int('kernel2', 2,8)
-    print('\n\n KERNEL1 IS {} \n KERNEL2 IS {} \n LEARNING RATE IS {} \n\n'.format(ker,ker2))
+    ker = trial.suggest_int('kernel1', 2,24)
+    ker2 = trial.suggest_int('kernel2', 2,12)
+    print('\n\n KERNEL1 IS {} \n KERNEL2 IS {} \n\n'.format(ker,ker2))
     
     
     change = { 
