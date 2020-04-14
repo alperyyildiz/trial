@@ -654,14 +654,16 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 def SINGLE_RUN(trial):
 
 
-    ker = trial.suggest_int('kernel1', 16,24)
-    ker2 = trial.suggest_int('kernel2', 8,12)
+    ker = trial.suggest_int('kernel1', 2, 8 )
+    ker2 = trial.suggest_int('kernel2', 16,24)
+    learning_rate = trial.suggest_uniform('lrr', 0.001,0.00008)
     print('\n\n KERNEL1 IS {} \n KERNEL2 IS {} \n\n'.format(ker,ker2))
     
     
     change = { 
               'CONV': {'1': {'KER': ker},
-                       '2': {'KER': ker2}}}
+                       '2': {'KER': ker2}},
+              'OTHERS': {'1': 'lrate': learning_rate}}
     minloss = P_OBJ.GET_MODEL(change)
 
 global P_OBJ
