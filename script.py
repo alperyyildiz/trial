@@ -368,7 +368,7 @@ class PARAMETERS():
         SCALER = StandardScaler()
         SCALER = SCALER.fit(sales[:-split].reshape(-1,1))
         sales = SCALER.transform(sales.reshape(-1,1))
-        del SCALERR
+        del SCALER
 
         sclr = StandardScaler()
         sclr = sclr.fit(dollars[:-split].reshape(-1,1))
