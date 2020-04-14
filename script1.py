@@ -653,18 +653,7 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 
 def SINGLE_RUN(trial):
 
-    ker1_start = int(input('kernel 1 start'))
-    ker1_end = int(input('kernel 1 end'))
-    
-    ker2_start = int(input('kernel 2 start'))
-    ker2_end = int(input('kernel 2 end'))
-    lr_start = float(input('lrate 2 start'))
-    lr_end = float(input('lrate 2 end'))
 
-    dil1_start = int(input('dil 1 start'))
-    dil1_end = int(input('dil 1 end'))
-    dil2_start = int(input('dil 2 start'))
-    dil2_end = int(input('dil 2 end'))
 
     
     ker = trial.suggest_int('kernel1',ker1_start, ker1_end)
@@ -742,6 +731,28 @@ for i in range(20):
 
             'OTHERS': {'1':OTHERS}
                 }
+    global ker1_start
+    global ker1_end
+    global ker2_start
+    global ker2_end
+    global lr_start
+    global lr_end
+    global dil1_start
+    global dil1_end
+    global dil2_start
+    global dil2_end
+    ker1_start = int(input('kernel 1 start'))
+    ker1_end = int(input('kernel 1 end'))
+    
+    ker2_start = int(input('kernel 2 start'))
+    ker2_end = int(input('kernel 2 end'))
+    lr_start = float(input('lrate 2 start'))
+    lr_end = float(input('lrate 2 end'))
+
+    dil1_start = int(input('dil 1 start'))
+    dil1_end = int(input('dil 1 end'))
+    dil2_start = int(input('dil 2 start'))
+    dil2_end = int(input('dil 2 end'))
 
     P_OBJ = PARAMETERS()
     P_OBJ.EXPERIMENT_NUMBER = int(1)
