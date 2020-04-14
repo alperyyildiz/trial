@@ -678,7 +678,7 @@ OTHERS  =  {
 
 
 DICT =  { 'CONV': {
-                    '1': {'FIL': 256, 
+                    '1': {'FIL': 128, 
                           'KER': 16,
                           'stride': 1,
                           'padding': 0,
@@ -688,7 +688,7 @@ DICT =  { 'CONV': {
                           'activation_function': [True, 'relu'],
                           'pooling': [False, 0, None]
                         },
-                    '2': {'FIL': 128, 
+                    '2': {'FIL': 256, 
                       'KER': 8,
                       'stride': 1,
                       'padding': 0,
@@ -707,7 +707,7 @@ DICT =  { 'CONV': {
 
         'DENSE': {
                   '1': {'FIL': 256,
-                        'dropout' : [True,0.65],
+                        'dropout' : [True,0.6],
                         'activation_function': [True, 'relu']
                       },
 
