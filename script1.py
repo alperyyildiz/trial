@@ -654,7 +654,7 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 def SINGLE_RUN(trial):
 
 
-    ker = trial.suggest_int('kernel1', 2,24)
+    ker = trial.suggest_int('kernel1', ,24)
     ker2 = trial.suggest_int('kernel2', 2,12)
     print('\n\n KERNEL1 IS {} \n KERNEL2 IS {} \n\n'.format(ker,ker2))
     
@@ -668,7 +668,7 @@ global P_OBJ
 global OTHERS
 global DICT
 OTHERS  =  {
-                'windowlength': 100,
+                'windowlength': 128,
                 'out_size': 3,
                 'period': 52,
                 'lrate': 0.0009,
@@ -682,14 +682,14 @@ DICT =  { 'CONV': {
                           'KER': 16,
                           'stride': 1,
                           'padding': 0,
-                          'dilation': 2,
+                          'dilation': 1,
                           'dropout': [True, 0.6],
                           'batchnorm': False,
                           'activation_function': [True, 'relu'],
                           'pooling': [False, 0, None]
                         },
                     '2': {'FIL': 128, 
-                      'KER': 8,
+                      'KER': 26,
                       'stride': 1,
                       'padding': 0,
                       'dilation':4,
