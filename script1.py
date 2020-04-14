@@ -654,7 +654,7 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 def SINGLE_RUN(trial):
 
 
-    learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 2e-3)
+    learning_rate = trial.suggest_loguniform('learning_rate', 1e-5, 3e-3)
     ker = trial.suggest_int('kernel1', 2,8)
     ker2 = trial.suggest_int('kernel2', 2,8)
     ker3 = trial.suggest_int('kernel3', 2,8)
@@ -687,7 +687,7 @@ DICT =  { 'CONV': {
                           'stride': 1,
                           'padding': 0,
                           'dilation': 2,
-                          'dropout': [True, 0.7],
+                          'dropout': [True, 0.5],
                           'batchnorm': False,
                           'activation_function': [True, 'relu'],
                           'pooling': [False, 0, None]
@@ -697,7 +697,7 @@ DICT =  { 'CONV': {
                       'stride': 1,
                       'padding': 0,
                       'dilation':4,
-                      'dropout': [True, 0.7],
+                      'dropout': [True, 0.5],
                       'batchnorm': False,
                       'activation_function': [True, 'relu'],
                       'pooling': [False, 0, None]
@@ -707,7 +707,7 @@ DICT =  { 'CONV': {
                       'stride': 1,
                       'padding': 0,
                       'dilation':6,
-                      'dropout': [True, 0.7],
+                      'dropout': [True, 0.5],
                       'batchnorm': False,
                       'activation_function': [True, 'relu'],
                       'pooling': [False, 0, None]
@@ -721,7 +721,7 @@ DICT =  { 'CONV': {
 
         'DENSE': {
                   '1': {'FIL': 256,
-                        'dropout' : [True,0.7],
+                        'dropout' : [True,0.5],
                         'activation_function': [True, 'relu']
                       },
 
