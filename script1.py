@@ -322,8 +322,8 @@ class PARAMETERS():
         fig2, self.predictions, self.test_outputs = self.plotz()
         fig2.suptitle(plot_header)
         plt.savefig(self.SAVE_DIR + '/PLOTS/PRD_' + save_NAME + '.png')
-        np.save(self.SAVE_DIR + 'PLOTS/' + save_NAME,np.array(self.predictions))
-        np.save(self.SAVE_DIR + 'PLOTS/real_out' , np.array(self.test_outputs))
+        np.save(self.SAVE_DIR + '/PLOTS/' + save_NAME,np.array(self.predictions))
+        np.save(self.SAVE_DIR + '/PLOTS/real_out' , np.array(self.test_outputs))
 
         plt.close('all')
 
