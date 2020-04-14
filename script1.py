@@ -656,7 +656,7 @@ def SINGLE_RUN(trial):
 
     ker = trial.suggest_int('kernel1', 2, 8 )
     ker2 = trial.suggest_int('kernel2', 16,24)
-    learning_rate = trial.suggest_uniform('lrr', 0.001,0.00008)
+    learning_rate = trial.suggest_uniform('lrr',0.00008, 0.001)
     print('\n\n KERNEL1 IS {} \n KERNEL2 IS {} \n\n'.format(ker,ker2))
     
     
