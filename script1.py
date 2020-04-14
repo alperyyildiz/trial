@@ -379,7 +379,7 @@ class PARAMETERS():
         vix = sclr.transform(vix.reshape(-1,1))
         del sclr
 
-        res = STL(sales, period = period ,seasonal = 23 , trend = 25).fit()
+        res = STL(sales, period = period ,seasonal = 53 , trend = 53).fit()
 
 
         vix = vix.reshape(vix.shape[0])
@@ -673,7 +673,7 @@ global DICT
 OTHERS  =  {
                 'windowlength': 100,
                 'out_size': 3,
-                'period': 24,
+                'period': 52,
                 'lrate': 0.003,
                 'batchsize': 32,
                 'epoch': 1000
