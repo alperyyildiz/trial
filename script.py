@@ -702,7 +702,8 @@ def SINGLE_RUN(trial):
     P_OBJ = PARAMETERS()
     P_OBJ.EXPERIMENT_NUMBER = 1
     P_OBJ.GET_DICT(DICT)
-    P_OBJ.GET_PARAMS_TO_CHANGE({'OTHERS':{'1':{'lrate':(0.001,0.0001)}}})
+    P_OBJ.GET_PARAMS_TO_CHANGE({'CONV':{'1':{'KER':(12,28),'dilation':(1,4)}},
+                                'OTHERS':{'1':{'lrate':(1e-6,1e-2)}}})
     P_OBJ.CREATE_SEARCH_SPACE()
     P_OBJ.CREATE_DIR()
 
