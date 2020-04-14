@@ -18,7 +18,6 @@ from torch.utils.data import TensorDataset
 from sklearn.preprocessing import StandardScaler
 from statsmodels.tsa.seasonal import seasonal_decompose, STL, DecomposeResult
 from sklearn.model_selection import GridSearchCV
-from hyperopt import fmin, tpe, hp, STATUS_OK, base,Trials
 cuda = torch.device('cuda')
 
 
@@ -710,7 +709,7 @@ def SINGLE_RUN(trial):
     P_OBJ.preprocess()
 
     learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 1e-2)
-    ker = trial.suggest_int('kernel', 12, 32)
+    ker = trial.suggest_int('kernel', 12, 28)
     dilation = trial.suggest_int('dilat',1,4)
 
     change = { 
