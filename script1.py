@@ -656,15 +656,15 @@ def SINGLE_RUN(trial):
     ker1_start = int(input('kernel 1 start'))
     ker1_end = int(input('kernel 1 end'))
     
-    ker2_start = inp(input('kernel 2 start'))
-    ker2_end = inp(input('kernel 2 end'))
-    ler_start = inp(input('lrate 2 start'))
-    ler_end = inp(input('lrate 2 end'))
+    ker2_start = int(input('kernel 2 start'))
+    ker2_end = int(input('kernel 2 end'))
+    ler_start = int(input('lrate 2 start'))
+    ler_end = int(input('lrate 2 end'))
 
-    dil1_start = inp(input('dil 1 start'))
-    dil1_end = inp(input('dil 1 end'))
-    dil2_start = inp(input('dil 2 start'))
-    dil2_end = inp(input('dil 2 end'))
+    dil1_start = int(input('dil 1 start'))
+    dil1_end = int(input('dil 1 end'))
+    dil2_start = int(input('dil 2 start'))
+    dil2_end = int(input('dil 2 end'))
 
     
     ker = trial.suggest_int('kernel1',ker1_start, ker1_end)
