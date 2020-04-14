@@ -4,6 +4,7 @@ pip install torch
 pip install visdom
 pip install matplotlib
 pip install xlrd
+pip install hyperopt
 pip install scikit-learn
 pip install datetime
 pip install statsmodels
