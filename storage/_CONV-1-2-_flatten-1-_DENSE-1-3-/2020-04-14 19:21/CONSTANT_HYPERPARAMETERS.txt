@@ -1,0 +1,18 @@
+
+
+ TYPE:   CONV 
+ 
+LAYER:
+1 	---	FIL: 128 		KER: 2 		stride: 1 		padding: 0 		dilation: 2 		batchnorm: False 		activation_function: [True, 'relu'] 		pooling: [False, 0, None] 		
+2 	---	FIL: 256 		KER: 16 		stride: 1 		padding: 0 		dilation: 4 		batchnorm: False 		activation_function: [True, 'relu'] 		pooling: [False, 0, None] 		
+
+ TYPE:   DENSE 
+ 
+LAYER:
+1 	---	FIL: 256 		activation_function: [True, 'relu'] 		
+3 	---	FIL: 4 		dropout: [False, 0] 		activation_function: [False, '-'] 		
+
+ TYPE:   OTHERS 
+ 
+LAYER:
+1 	---	windowlength: 128 		out_size: 4 		period: 52 		batchsize: 32 		epoch: 1000 		
