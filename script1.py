@@ -663,7 +663,7 @@ def SINGLE_RUN(trial):
     change = { 
               'CONV': {'1': {'KER': ker},
                        '2': {'KER': ker2}},
-              'OTHERS': {'1': 'lrate': learning_rate}}
+              'OTHERS': {'1': { 'lrate': learning_rate}}}
     minloss = P_OBJ.GET_MODEL(change)
 
 global P_OBJ
