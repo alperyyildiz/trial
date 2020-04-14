@@ -652,49 +652,6 @@ def SET_EXPERIMENT(PARAMS_TO_CHANGE=None):
 
 
 def SINGLE_RUN(trial):
-    OTHERS  =  {
-                    'windowlength': 100,
-                    'out_size': 3,
-                    'period': 24,
-                    'lrate': 0.003,
-                    'batchsize': 32,
-                    'epoch': 1000
-                    }
-
-
-    DICT =  { 'CONV': {
-                        '1': {'FIL': 128, 
-                              'KER': 16,
-                              'stride': 1,
-                              'padding': 0,
-                              'dilation': 1,
-                              'dropout': [True, 0.7],
-                              'batchnorm': False,
-                              'activation_function': [True, 'relu'],
-                              'pooling': [False, 0, None]
-                            }
-
-    
-                      },          
-       
-
-            'flatten': {'1': {'nofilter':0 , 'nonothing':0 }},
-
-            'DENSE': {
-                      '1': {'FIL': 256,
-                            'dropout' : [True,0.7],
-                            'activation_function': [True, 'relu']
-                          },
-                      
-
-                      '3': {'FIL':OTHERS['out_size'],
-                            'dropout' : [False,0],
-                            'activation_function': [False, '-']
-                            }
-                    },
-              
-            'OTHERS': {'1':OTHERS}
-                }
 
 
     learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 1e-2)
@@ -709,7 +666,53 @@ def SINGLE_RUN(trial):
               'OTHERS':{'1':{'lrate':learning_rate,
                           }}}
     minloss = P_OBJ.GET_MODEL(change)
+
 global P_OBJ
+global OTHERS
+global DICT
+OTHERS  =  {
+                'windowlength': 100,
+                'out_size': 3,
+                'period': 24,
+                'lrate': 0.003,
+                'batchsize': 32,
+                'epoch': 1000
+                }
+
+
+DICT =  { 'CONV': {
+                    '1': {'FIL': 128, 
+                          'KER': 16,
+                          'stride': 1,
+                          'padding': 0,
+                          'dilation': 1,
+                          'dropout': [True, 0.7],
+                          'batchnorm': False,
+                          'activation_function': [True, 'relu'],
+                          'pooling': [False, 0, None]
+                        }
+
+
+                  },          
+
+
+        'flatten': {'1': {'nofilter':0 , 'nonothing':0 }},
+
+        'DENSE': {
+                  '1': {'FIL': 256,
+                        'dropout' : [True,0.7],
+                        'activation_function': [True, 'relu']
+                      },
+
+
+                  '3': {'FIL':OTHERS['out_size'],
+                        'dropout' : [False,0],
+                        'activation_function': [False, '-']
+                        }
+                },
+
+        'OTHERS': {'1':OTHERS}
+            }
 
 P_OBJ = PARAMETERS()
 P_OBJ.EXPERIMENT_NUMBER = 1
