@@ -675,7 +675,7 @@ OTHERS  =  {
                 'period': 52,
                 'lrate': 0.00012,
                 'batchsize': 32,
-                'epoch': 1000
+                'epoch': 200
                 }
 
 
