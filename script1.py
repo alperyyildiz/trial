@@ -669,17 +669,17 @@ global OTHERS
 global DICT
 OTHERS  =  {
                 'windowlength': 128,
-                'out_size': 3,
+                'out_size': 4,
                 'period': 52,
-                'lrate': 0.0002,
-                'batchsize': 16,
+                'lrate': 0.00012,
+                'batchsize': 32,
                 'epoch': 1000
                 }
 
 
 DICT =  { 'CONV': {
                     '1': {'FIL': 128, 
-                          'KER': 16,
+                          'KER': 2,
                           'stride': 1,
                           'padding': 0,
                           'dilation': 2,
@@ -689,7 +689,7 @@ DICT =  { 'CONV': {
                           'pooling': [False, 0, None]
                         },
                     '2': {'FIL': 256, 
-                      'KER': 8,
+                      'KER': 16,
                       'stride': 1,
                       'padding': 0,
                       'dilation':4,
