@@ -671,7 +671,7 @@ global P_OBJ
 global OTHERS
 global DICT
 OTHERS  =  {
-                'windowlength': 100,
+                'windowlength': 128,
                 'out_size': 3,
                 'period': 24,
                 'lrate': 0.003,
