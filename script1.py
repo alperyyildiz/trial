@@ -319,9 +319,12 @@ class PARAMETERS():
         #plt.ylim(()
         plt.savefig( self.SAVE_DIR + '/PLOTS/' + save_NAME + '.png')
         
-        fig2 = self.plotz()
+        fig2, self.predictions, self.test_outputs = self.plotz()
         fig2.suptitle(plot_header)
         plt.savefig(self.SAVE_DIR + '/PLOTS/PRD_' + save_NAME + '.png')
+        np.save(self.SAVE_DIR + 'PLOTS/' + save_NAME,np.array(self.predictions))
+        np.save(self.SAVE_DIR + 'PLOTS/real_out' , np.array(self.test_outputs))
+
         plt.close('all')
 
     def CONV_DICT_TO_INT(self,DDD):
@@ -484,21 +487,19 @@ class PARAMETERS():
            pred = self(inp)
         pred1 = pred.cpu()
         out1 = out.cpu()
+
+
         pred1 = SCALERR.inverse_transform(pred1)
         out1 = SCALERR.inverse_transform(out1)
         fig = plt.figure(figsize=(12, 6))
-        ax1, ax2,  = fig.subplots(2, 1, )
         bisi = out.shape[0]
-        for i in range(int(bisi/2)):
-            ax1.plot(timez[i],pred1[i])
-            ax1.plot(timez[i],out1[i],color='black')
+        for i in range(int(bisi)):
+            plt.plot(timez[i],pred1[i])
+            plt.plot(timez[i],out1[i],color='black')
 
-        for i in range(int(bisi/2)+1,2*int(bisi/2)):
+        return fig,pred1,out1
 
-            ax2.plot(timez[i],pred1[i])
-            ax2.plot(timez[i],out1[i],color='black')
-
-        return fig
+    
 class Model(nn.Module, PARAMETERS):
     def __init__(self, SOURCE_OBJ):
         super().__init__()
