@@ -697,20 +697,6 @@ def SINGLE_RUN(trial):
                 }
 
 
-    global P_OBJ
-
-    P_OBJ = PARAMETERS()
-    P_OBJ.EXPERIMENT_NUMBER = 1
-    P_OBJ.GET_DICT(DICT)
-    P_OBJ.GET_PARAMS_TO_CHANGE({'CONV':{'1':{'KER':(12,28),'dilation':(1,4)}},
-                                'OTHERS':{'1':{'lrate':(1e-6,1e-2)}}})
-    P_OBJ.CREATE_SEARCH_SPACE()
-    P_OBJ.CREATE_DIR()
-
-    P_OBJ.WRITE_CONSTANTS()
-
-    P_OBJ.preprocess()
-
     learning_rate = trial.suggest_loguniform('learning_rate', 1e-6, 1e-2)
     ker = trial.suggest_int('kernel', 12, 28)
     dilation = trial.suggest_int('dilat',1,4)
@@ -723,6 +709,20 @@ def SINGLE_RUN(trial):
               'OTHERS':{'1':{'lrate':learning_rate,
                           }}}
     minloss = P_OBJ.GET_MODEL(change)
+global P_OBJ
+
+P_OBJ = PARAMETERS()
+P_OBJ.EXPERIMENT_NUMBER = 1
+P_OBJ.GET_DICT(DICT)
+P_OBJ.GET_PARAMS_TO_CHANGE({'CONV':{'1':{'KER':(12,28),'dilation':(1,4)}},
+                            'OTHERS':{'1':{'lrate':(1e-6,1e-2)}}})
+P_OBJ.CREATE_SEARCH_SPACE()
+P_OBJ.CREATE_DIR()
+
+P_OBJ.WRITE_CONSTANTS()
+
+P_OBJ.preprocess()
+
 
 study = optuna.create_study()
 
