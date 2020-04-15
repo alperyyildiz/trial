@@ -463,7 +463,7 @@ class PARAMETERS():
 
         model = Model(P_OBJ)
         model.to(device = cuda)
-        model.optimizer = optim.Adam(model.parameters(),lr=self.DICT['OTHERS']['1']['lrate'],weight_decay = 0.001)#,weight_decay = 0.0001 
+        model.optimizer = optim.Adam(model.parameters(),lr=self.DICT['OTHERS']['1']['lrate'],weight_decay = 0.005)#,weight_decay = 0.0001 
         repr(model)
         minloss = model.fit()
         
@@ -668,9 +668,8 @@ def SINGLE_RUN(trial):
     
     change = { 
               'CONV': {'1': {'KER': ker,
-                             'dilation': dilation1},
-                       '2': {'KER': ker2,
-                             'dilation': dilation2}},
+                             'dilation': dilation1}},
+                      
               'OTHERS': {'1': { 'lrate': learning_rate}}}
     minloss = P_OBJ.GET_MODEL(change)
 
@@ -699,18 +698,7 @@ for i in range(20):
                               'batchnorm': False,
                               'activation_function': [True, 'relu'],
                               'pooling': [False, 0, None]
-                            },
-                        '2': {'FIL': 128, 
-                          'KER': 16,
-                          'stride': 1,
-                          'padding': 0,
-                          'dilation':4,
-                          'dropout': [True, 0.7],
-                          'batchnorm': False,
-                          'activation_function': [True, 'relu'],
-                          'pooling': [False, 0, None]
-                        }
-
+                            }
 
                       },          
 
@@ -734,27 +722,20 @@ for i in range(20):
                 }
     global ker1_start
     global ker1_end
-    global ker2_start
-    global ker2_end
     global lr_start
     global lr_end
     global dil1_start
     global dil1_end
-    global dil2_start
-    global dil2_end
     ker1_start = int(input('kernel 1 start'))
     ker1_end = int(input('kernel 1 end'))
     
-    ker2_start = int(input('kernel 2 start'))
-    ker2_end = int(input('kernel 2 end'))
+    
     lr_start = float(input('lrate 2 start'))
     lr_end = float(input('lrate 2 end'))
 
     dil1_start = int(input('dil 1 start'))
     dil1_end = int(input('dil 1 end'))
-    dil2_start = int(input('dil 2 start'))
-    dil2_end = int(input('dil 2 end'))
-
+  
     P_OBJ = PARAMETERS()
     P_OBJ.EXPERIMENT_NUMBER = int(1)
     P_OBJ.GET_DICT(DICT)
