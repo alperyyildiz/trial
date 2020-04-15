@@ -685,7 +685,7 @@ for i in range(20):
                     'period': 52,
                     'lrate': 0.00012,
                     'batchsize': 32,
-                    'epoch': 200
+                    'epoch': 600
                     }
 
 
