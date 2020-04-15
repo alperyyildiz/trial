@@ -690,22 +690,22 @@ for i in range(20):
 
 
     DICT =  { 'CONV': {
-                        '1': {'FIL': 128, 
+                        '1': {'FIL': 256, 
                               'KER': 16,
                               'stride': 1,
                               'padding': 0,
                               'dilation': 2,
-                              'dropout': [True, 0.6],
+                              'dropout': [True, 0.7],
                               'batchnorm': False,
                               'activation_function': [True, 'relu'],
                               'pooling': [False, 0, None]
                             },
-                        '2': {'FIL': 256, 
+                        '2': {'FIL': 128, 
                           'KER': 16,
                           'stride': 1,
                           'padding': 0,
                           'dilation':4,
-                          'dropout': [True, 0.6],
+                          'dropout': [True, 0.7],
                           'batchnorm': False,
                           'activation_function': [True, 'relu'],
                           'pooling': [False, 0, None]
@@ -718,7 +718,7 @@ for i in range(20):
             'flatten': {'1': {'nofilter':0 , 'nonothing':0 }},
 
             'DENSE': {
-                      '1': {'FIL': 256,
+                      '1': {'FIL': 128,
                             'dropout' : [True,0.6],
                             'activation_function': [True, 'relu']
                           },
