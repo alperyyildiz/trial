@@ -687,7 +687,7 @@ for i in range(20):
 
 
     DICT =  { 'CONV': {
-                        '1': {'FIL': 256, 
+                        '1': {'FIL': 64, 
                               'KER': 16,
                               'stride': 1,
                               'padding': 0,
@@ -704,7 +704,7 @@ for i in range(20):
             'flatten': {'1': {'nofilter':0 , 'nonothing':0 }},
 
             'DENSE': {
-                      '1': {'FIL': 256,
+                      '1': {'FIL': 128,
                             'dropout' : [True,0.6],
                             'activation_function': [True, 'relu']
                           },
