@@ -658,12 +658,10 @@ def SINGLE_RUN(trial):
 
     
     ker = trial.suggest_int('kernel1',ker1_start, ker1_end)
-    ker2 = trial.suggest_int('kernel2', ker2_start, ker2_end)
     learning_rate = trial.suggest_uniform('lrr',lr_start, lr_end)
     dilation1 = trial.suggest_int('dil1',dil1_start, dil1_end)
-    dilation2 = trial.suggest_int('dil1',dil2_start, dil2_end)
 
-    print('\n\n KERNEL1 IS {} \n KERNEL2 IS {} \n LRATE IS {} \n\n'.format(ker,ker2,learning_rate))
+    print('\n\n KERNEL IS {} \n DILATION IS {} \n LRATE IS {} \n\n'.format(ker,dilation1,learning_rate))
     
     
     change = { 
