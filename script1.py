@@ -677,12 +677,12 @@ for i in range(20):
     global OTHERS
     global DICT
     OTHERS  =  {
-                    'windowlength': 128,
+                    'windowlength': 64,
                     'out_size': 4,
                     'period': 52,
                     'lrate': 0.00012,
                     'batchsize': 32,
-                    'epoch': 1000
+                    'epoch': 100
                     }
 
 
