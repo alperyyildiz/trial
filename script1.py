@@ -463,7 +463,7 @@ class PARAMETERS():
 
         model = Model(P_OBJ)
         model.to(device = cuda)
-        model.optimizer = optim.Adam(model.parameters(),lr=self.DICT['OTHERS']['1']['lrate'],weight_decay = 0.005)#,weight_decay = 0.0001 
+        model.optimizer = optim.Adam(model.parameters(),lr=self.DICT['OTHERS']['1']['lrate'],weight_decay = 0.008)#,weight_decay = 0.0001 
         repr(model)
         minloss = model.fit()
         
@@ -682,7 +682,7 @@ for i in range(20):
                     'period': 52,
                     'lrate': 0.00012,
                     'batchsize': 32,
-                    'epoch': 600
+                    'epoch': 1000
                     }
 
 
@@ -704,7 +704,7 @@ for i in range(20):
             'flatten': {'1': {'nofilter':0 , 'nonothing':0 }},
 
             'DENSE': {
-                      '1': {'FIL': 128,
+                      '1': {'FIL': 256,
                             'dropout' : [True,0.6],
                             'activation_function': [True, 'relu']
                           },
