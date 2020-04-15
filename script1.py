@@ -488,9 +488,11 @@ class PARAMETERS():
         pred1 = pred.cpu()
         out1 = out.cpu()
 
-
-        pred1 = SCALERR.inverse_transform(pred1)
-        out1 = SCALERR.inverse_transform(out1)
+        arr = pd.read_excel('clean.xlsx')
+        sclr = StandardScaler()
+        sclr = sclr.fit(np.array(arr[:-32]).reshape(-1,1))
+        pred1 = sclr.inverse_transform(pred1)
+        out1 = sclr.inverse_transform(out1)
         fig = plt.figure(figsize=(12, 6))
         bisi = out.shape[0]
         for i in range(int(bisi)):
